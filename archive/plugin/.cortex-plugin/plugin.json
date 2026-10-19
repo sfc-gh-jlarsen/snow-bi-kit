@@ -1,0 +1,5 @@
+{
+  "name": "snow-bi-kit",
+  "description": "BI builder kit for analysts moving from Tableau/Power BI to Cortex Code: start a project (one-page brief), build it to company standards with 'how this was built' panels, check it (speed, build, security), and hand it off to the data team. Leads run setup once to record company standards.",
+  "version": "0.1.0"
+}

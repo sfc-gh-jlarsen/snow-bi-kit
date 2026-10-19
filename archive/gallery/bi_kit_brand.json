@@ -1,0 +1,14 @@
+{
+  "primary_color": "#1F4E79",
+  "chart_palette": ["#1F4E79", "#F2A900", "#5B8DB8", "#A23B2A", "#6C8E3E", "#7F6A93"],
+  "positive_color": "#2E7D32",
+  "negative_color": "#C62828",
+  "font_family": "Inter, Helvetica, Arial, sans-serif",
+  "number_format": "{:,.0f}",
+  "currency": "USD",
+  "currency_format": "${:,.0f}",
+  "percent_format": "{:.1%}",
+  "date_format": "%b %Y",
+  "language": "en",
+  "timezone": "America/New_York"
+}

@@ -1,0 +1,5 @@
+{
+  "name": "snow-bi-kit-dev",
+  "description": "DEV ONLY - never install for analysts. Adds activity logging for snow-bi-kit commands and a log-feedback skill that writes test feedback to Snowflake tables in the kit developer's demo account.",
+  "version": "0.1.0"
+}

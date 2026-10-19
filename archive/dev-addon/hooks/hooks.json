@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "^skill$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ${CORTEX_PLUGIN_ROOT}/hooks/log_activity.py",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}
