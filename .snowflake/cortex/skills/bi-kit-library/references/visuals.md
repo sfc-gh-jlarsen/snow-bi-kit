@@ -2,7 +2,7 @@
 
 The kit names and builds visuals only from this list. Analyst wording maps to an entry (aliases in brackets). If nothing fits, say so and offer the closest entry; don't improvise a new chart type.
 
-Every entry is built the same way: one `run_visual(...)` per visual, drawn from its result and followed by `how_built(info)` (Streamlit; see bi-kit-build `references/build-patterns.md`), or as inline SVG/HTML plus a `<details>` panel (HTML report). Column names below are illustrative.
+Every entry is built the same way: one `run_visual(...)` per visual, drawn from its result and followed by `how_built(info)` (Streamlit; see `how-built-helper.md`), or as inline SVG/HTML plus a `<details>` panel (HTML report). Column names below are illustrative.
 
 Legend: **Use** = when it's the right choice · **Avoid** = when to pick something else · **Shape** = what the query must return · **Build** = Altair mark/encoding (Streamlit) · **HTML** = report approach · **Watch** = common mistakes. ✔ = has a worked example (in `archive/gallery/`).
 

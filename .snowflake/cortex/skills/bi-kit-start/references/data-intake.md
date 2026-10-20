@@ -1,6 +1,6 @@
 # Checking the data the analyst named
 
-Goal: confirm the sources exist, the analyst's role can read them, and what they look like. Keep it cheap (the standards warehouse or the current one, `LIMIT`/`SAMPLE`). Read-only.
+Goal: confirm the sources exist, the analyst's role can read them, and what they look like. Keep it cheap (the current warehouse, `LIMIT`/`SAMPLE`). Read-only.
 
 ## For each named object
 1. **Resolve the name.** Accept `DB.SCHEMA.OBJECT`, `SCHEMA.OBJECT` or `OBJECT`. For partial names use `SHOW OBJECTS LIKE '<name>' IN ACCOUNT` (or `IN DATABASE <db>` if they gave one) and pick the exact match; if several match, list them and ask.

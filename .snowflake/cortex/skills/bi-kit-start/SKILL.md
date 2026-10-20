@@ -1,6 +1,6 @@
 ---
 name: bi-kit-start
-description: "Start a BI project with snow-bi-kit: discovery that turns a request (a new dashboard idea, or changes to an existing Streamlit app or report) into a one-page project brief with a short build plan (outcome, audience and access, data sources, key measures and a number to match, optional picture or description of the look). Use when: an analyst has a new dashboard/report idea or request, wants to scope a project, change or extend an existing app, start a project, kick off a dashboard, write a brief. Triggers: start a project, new dashboard project, kick off, scope this dashboard, project brief, I have a request for a report, I want to change this app. Do NOT use for: building the app (bi-kit-build), reviewing work (bi-kit-check), or general SQL questions."
+description: "Start a BI project with snow-bi-kit: discovery that turns a request (a new dashboard idea, or changes to an existing Streamlit app or report) into a one-page project brief with a short build plan (outcome, audience and access, data sources, key measures and a number to match, optional picture or description of the look). Use when: an analyst has a new dashboard/report idea or request, wants to scope a project, change or extend an existing app, start a project, kick off a dashboard, write a brief. Triggers: start a project, new dashboard project, kick off, scope this dashboard, project brief, I have a request for a report, I want to change this app. Do NOT use for: building the app (bi-kit-build), or general SQL questions."
 ---
 
 # Start a project
@@ -11,18 +11,25 @@ Load the `bi-kit-library` skill first and follow its `voice.md`. Find company st
 
 ## Step 1: New or existing?
 
-If the request doesn't already say, ask one question: **"Are we building something new, or changing an app or report you already have?"**
+If the request doesn't already say, ask one **single** question: **"Are we building something new, or changing an app or report you already have?"** Options: *Something new* / *Change an existing app or report*. If they pick existing, follow with a **text** question: "Where is it? (folder, file, or app name)".
 - **New** → Step 2a.
 - **Existing** (they point at a folder, a `streamlit_app.py`, a deployed Streamlit app, or an HTML report) → Step 2b.
+- If all they want is the existing app to **match company standards or show how each number was made** (no new charts or data), skip the brief: use the `bi-kit-apply-standards` skill instead.
 
 ## Step 2a: New dashboard
 
-Ask the five questions in one batch (ask-user-question; free-text with suggested defaults). If the analyst already answered some in their request, pre-fill those and only ask for the gaps.
-1. **Outcome**: what question does this answer, and what will someone do differently because of it?
-2. **Audience & access**: who looks at it; do they all have Snowflake logins; should different people see different rows (region, plant…)?
-3. **Data**: which tables, views or semantic view it comes from (names are fine, even partial), or a SQL query they already trust; and how fresh it must be (live / hourly / daily / monthly).
-4. **Measures & a number to match**: the 3–5 key numbers and how each is defined, plus **one number from an existing report they trust** (e.g. "Q3 net sales for NA = $12.4M"). Pre-fill definitions from standards `trusted_data.metric_definitions` if present; the analyst confirms instead of retyping.
-5. **Look** *(optional)*: a picture (screenshot, mockup, slide) if they have one, or a sentence, or "suggest something". **Never require a picture.**
+Ask with ask-user-question. If the analyst already answered some in their request, pre-fill those and only ask for the gaps. The tool takes at most 4 questions per call: ask 1–4 together, then 5–6.
+
+| # | Question | Type |
+|---|---|---|
+| 1 | **Outcome**: what question does this answer, and what will someone do differently because of it? | text |
+| 2 | **Audience & access**: who looks at it, do they all have Snowflake logins, and should different people see different rows (region, plant…)? | text |
+| 3 | **Data**: which tables, views or semantic view does it come from? Names are fine, even partial, or paste a SQL query you trust. | **text** (never a pick-list; you don't know their tables yet) |
+| 4 | **Measures & a number to match**: the 3–5 key numbers and how each is defined, plus one number from an existing report you trust (e.g. "Q3 net sales for NA = $12.4M") | text; pre-fill definitions from standards `trusted_data.metric_definitions` if present |
+| 5 | **How fresh** does the data need to be? | single: Live / Hourly / Daily / Monthly |
+| 6 | **Look** *(optional)*: attach a picture (screenshot, mockup, slide), describe it, or leave blank and I'll suggest one | text, default `""`. **Never require a picture.** |
+
+Every **text** question gets a `defaultValue` (a short example or `""`).
 
 ## Step 2b: Existing app or report
 

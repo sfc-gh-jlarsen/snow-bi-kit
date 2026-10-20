@@ -1,38 +1,15 @@
 # snow-bi-kit company standards
-# Filled in once by a lead via the bi-kit-setup skill. Every kit command reads this file.
-# Keys marked REQUIRED must be filled; commands stop with a clear message if they're blank.
-# Where the kit looks for this file: see standards-lookup.md in the bi-kit-library skill
-# (./bi-kit/company-standards.yaml, then the stage path in ./bi-kit/standards-location.txt)
+# How our Streamlit (and Snowflake App Runtime) apps look and behave. Written by the bi-kit-setup skill.
+# Deliberately NOT here: where apps deploy, roles, warehouses, compute pools. Those live in each
+# project's deployment config (snowflake.yml / app.yml targets), managed by the bundled Streamlit and Apps skills.
+# Where the kit looks for this file: standards-lookup.md in the bi-kit-library skill
+# (convention: a stage named STANDARDS in a schema named BI_KIT, e.g. @ANALYTICS.BI_KIT.STANDARDS/company-standards.yaml).
+# Every key is optional; anything blank falls back to a sensible default.
 
 company:
-  name: ""                      # REQUIRED  e.g. "Acme Tire Co"
-  standards_owner: ""           # REQUIRED  person/team to ask about these rules
+  name: ""                      # e.g. "Acme Tire Co"
+  standards_owner: ""           # person/team to ask about these rules
   last_reviewed: ""             # YYYY-MM-DD
-
-environments:                   # where things live at each stage
-  prototype:
-    database: ""                # REQUIRED  where analysts may build
-    schema_pattern: ""          # REQUIRED  e.g. "PROTO_{username}" or a shared schema name
-  dev:  { database: "", schema: "" }
-  test: { database: "", schema: "" }
-  prod: { database: "", schema: "" }
-  naming:
-    objects: "UPPER_SNAKE_CASE"
-    app_prefix: ""              # e.g. "BI_" for Streamlit apps
-
-access:
-  build_role: ""                # REQUIRED  role analysts build with
-  viewer_roles: []              # roles that may be granted app/report access
-  shared_app_role: ""           # role that owns shared apps (never a personal or admin role)
-  external_sharing_allowed: false   # may apps be embedded for people without Snowflake logins?
-  cowork_publish_role: ""       # who may publish to CoWork (MANAGE ARTIFACT PUBLICATION)
-  row_level_security_note: ""   # e.g. "Region filtering is enforced by row access policy on SALES"
-
-compute:
-  warehouse: ""                 # REQUIRED  default query warehouse (small)
-  profiling_warehouse: ""       # optional; defaults to warehouse
-  streamlit_compute_pool: ""    # needed for Streamlit (container runtime)
-  external_access_integration: ""   # needed if apps install packages from PyPI
 
 brand:
   primary_color: ""             # hex, e.g. "#1F4E79"
@@ -40,7 +17,9 @@ brand:
   positive_color: ""            # good change
   negative_color: ""            # bad change
   font_family: ""               # e.g. "Inter, sans-serif"
-  logo_stage_path: ""           # e.g. "@BRAND.ASSETS.LOGOS/logo.png"
+  logo_stage_path: ""           # e.g. "@ANALYTICS.BI_KIT.STANDARDS/logo.png"
+
+formats:
   number_format: "{:,.0f}"
   currency: "USD"
   currency_format: "${:,.0f}"
@@ -56,20 +35,19 @@ brand:
 trusted_data:
   semantic_views: []            # preferred governed sources, fully qualified
   certified_tables: []
-  metric_definitions:           # pre-fill brief question 4; analysts confirm instead of retyping
+  metric_definitions:           # pre-fill the measures question in bi-kit-start; analysts confirm
     # - name: "Net sales"
     #   definition: "Gross sales minus returns and allowances, USD, excludes intercompany"
     #   source: "SALES_DB.MART.SV_SALES.NET_SALES_USD"
 
-visual_overrides:               # company tweaks to the visual library
-  # kpi: "Always compare to plan, not last year"
+house_rules:
+  how_built_panels: "on"        # on | off  ("How this was built" panel under every visual)
+  production_panels: "off"      # off (DEBUG = False) | remove (strip the panel code)
+  visual_overrides:             # company tweaks to the visual library
+    # kpi: "Always compare to plan, not last year"
+  notes: ""                     # anything else every app should follow, in plain words
 
-handoff:
-  receiving_team: ""            # REQUIRED  who industrializes prototypes
-  intake: ""                    # REQUIRED  how to send it: Jira project, email, channel
+handoff:                        # optional: pre-fills the questions in bi-kit-handoff
+  receiving_team: ""            # who takes prototypes to production
+  intake: ""                    # Jira project, email, channel
   required_fields: []           # extra fields the receiving team wants in HANDOFF.md
-  doc_standards: ""             # e.g. "README must include owner and refresh SLA"
-
-debug:
-  prototype: "on"               # on | off
-  production: "remove"          # off (flag) | remove (strip debug code)

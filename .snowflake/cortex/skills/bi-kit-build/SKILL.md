@@ -1,6 +1,6 @@
 ---
 name: bi-kit-build
-description: "Build (or change) the dashboard, HTML report or app described in a snow-bi-kit PROJECT_BRIEF.md, using company standards, the kit's visual library, an optional reference picture, and 'how this was built' panels on every chart. Builds on Snowflake's bundled Streamlit skill for the Streamlit and Snowflake mechanics. Use when: the brief is approved and the analyst says build it, make the dashboard, change this chart, add a filter, make it look like this picture, match our brand. Triggers: build it, build my dashboard, build from my brief, change this chart, add a filter, make it look like this. Do NOT use for: scoping a new request (bi-kit-start), reviewing quality or security (bi-kit-check), or production hand-off (bi-kit-handoff)."
+description: "Build (or change) the dashboard, HTML report or app described in a snow-bi-kit PROJECT_BRIEF.md, using company standards, the kit's visual library, an optional reference picture, and 'how this was built' panels on every chart. Builds on Snowflake's bundled Streamlit skill for the Streamlit and Snowflake mechanics. Use when: the brief is approved and the analyst says build it, make the dashboard, change this chart, add a filter, make it look like this picture, match our brand. Triggers: build it, build my dashboard, build from my brief, change this chart, add a filter, make it look like this. Do NOT use for: scoping a new request (bi-kit-start), or production hand-off (bi-kit-handoff)."
 ---
 
 # Build it
@@ -11,8 +11,8 @@ Build what the brief says, to company standards, with "How this was built" panel
 
 ## Before building
 1. Read `PROJECT_BRIEF.md`. If it's missing or not approved, offer *start a project* first. For a tiny ask ("one chart from this query") you may proceed after confirming outcome, data and look in one question.
-2. Read company standards (if any). Note warehouse, prototype location, brand, formats, fiscal calendar, debug policy.
-3. **Confirm the build plan** from the brief in library names (`visuals.md` (bi-kit-library)), each mapped to fields. Ask once: "Build this?"
+2. Read company standards (if any). Note brand, formats, fiscal calendar, trusted data, house rules (panels on/off).
+3. **Confirm the build plan** from the brief in library names (`visuals.md` (bi-kit-library)), each mapped to fields. Ask once (**single**: *Yes, build it* / *Change something first*): "Build this?"
 
 ## Building
 4. **Surface** (from the brief):
@@ -25,18 +25,18 @@ Build what the brief says, to company standards, with "How this was built" panel
 8. **Existing app**: change only what the build plan lists. Keep the app's existing structure; add the helper and panels to the visuals you touch.
 
 ## Checking before you say it's done (quietly)
-9. Read the app back: every chart/KPI/table goes through `run_visual`; no user input in f-string SQL; no passwords or admin roles.
+9. Read the app back: every chart/KPI/table goes through `run_visual`; no user input in f-string SQL. Grep the project with `secret-patterns.md` (bi-kit-library) and fix anything it finds (passwords, keys, admin roles).
 10. If a shell and connection are available, run it (`streamlit run app/streamlit_app.py --server.headless true`) and fix errors. Re-run each visual's SQL yourself and compare row counts and totals to what the app shows.
 11. Check the number to match. If it differs, say so plainly with the difference and the likely reason (filter, definition, period); never adjust numbers to force a match.
 
 ## Run / deploy
-12. Offer to run it locally or deploy it to the prototype location from standards using the bundled Streamlit skill. Ask before creating anything in Snowflake.
+12. Offer to run it locally, or deploy it with the bundled skill (`developing-with-streamlit-in-snowflake`, or `snowflake-apps` for App Runtime). **That skill owns where and how it deploys**: it reads or creates the project's deployment config (`snowflake.yml` / `app.yml` targets: database, schema, warehouse, compute, roles). Don't pick a location here. Ask before creating anything in Snowflake.
 
 ## Reply (one screen)
 - What was built (visuals by name), where it is, how to open it.
 - Number to match: **matches** / **differs by X (why)**.
 - Anything assumed or left out ("needs a source: plant returns").
-- **What to do next**: "Look it over; tell me what to change. When you're happy, say *check my work*."
+- **What to do next**: "Look it over; tell me what to change. When you're happy and it's going to a team, say *hand this off*."
 
 ## Changes later
 For "change this chart / add a filter / make it look like this", edit the app the same way (steps 5–11).

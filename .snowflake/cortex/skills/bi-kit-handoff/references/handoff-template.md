@@ -3,8 +3,8 @@
 ## handoff/HANDOFF.md
 ```markdown
 # Hand-off: <project>
-**From:** <analyst> · **To:** <receiving_team> · **Date:** <date> · **Intake:** <handoff.intake>
-<one row per standards handoff.required_fields, e.g. **Business owner:** … · **Refresh need:** … · **Expected viewers:** …>
+**From:** <analyst> · **To:** <receiving_team> · **Date:** <date> · **Intake:** <intake, from standards or the analyst>
+<one row per required field (standards `handoff.required_fields`, if any), e.g. **Business owner:** … · **Refresh need:** … · **Expected viewers:** …>
 
 ## What it does
 <2–3 sentences from the brief's outcome. Who uses it and for which decision.>
@@ -24,7 +24,7 @@ Number to match: <measure> = <value> → **matches** in the prototype.
 ## What production needs
 - Refresh: <from brief; who owns the pipeline that keeps sources fresh>
 - Access: viewers <roles>; **rows per viewer**: <owner's vs caller's rights decision>
-- Compute: <warehouse, compute pool, EAI>
+- Compute: <warehouse, compute pool, EAI, from the deployment config targets>
 - Grants (review, don't run as-is):
   ```sql
   GRANT USAGE ON DATABASE … TO ROLE <app_owner>;
@@ -35,14 +35,11 @@ Number to match: <measure> = <value> → **matches** in the prototype.
 ## Prototype-grade (needs work)
 - <specific items>
 
-## Check results
-<Fix now / Worth considering counts and the open items; full report in CHECK_REPORT.md>
-
 ## Open questions
 - <only real ones>
 
 ## Files in this pack
-README.md · architecture.md · PROJECT_BRIEF.md · CHECK_REPORT.md · production/ (debug off)
+README.md · architecture.md · PROJECT_BRIEF.md · production/ (debug off)
 ```
 
 ## handoff/README.md

@@ -10,7 +10,7 @@ Static, read-mostly reports shared in CoWork. Same truth rules as Streamlit: eve
    ```
 2. For each visual, write the chart as **inline SVG** (bars, lines, sparklines and bullets are simple rect/polyline/line), followed by a `<details><summary>How this was built</summary><pre>SQL…</pre>…</details>` block when `DEBUG` is on.
 3. **No CDN or external scripts, no remote images, no inline event handlers.** CoWork reports render in a strict sandbox; follow the bundled `html-authoring` skill.
-4. Run `build_report.py` to produce `report/report.html`, then publish with the bundled report-publishing skill, granting the brief's viewer roles (never PUBLIC unless asked).
+4. Run `build_report.py` to produce `report/report.html`, then publish with the bundled report-publishing skill, sharing with the roles the analyst names (never PUBLIC unless asked).
 
 ## Notes
 - A report is a snapshot. Show "Data as of <timestamp>" at the top; re-run the build to refresh.

@@ -1,6 +1,6 @@
 # "How this was built" panels
 
-The panels are how an analyst (and later the data team) sees **exactly how each number was made**. On for prototypes, off for production (company standards `debug`, default: on in prototypes, off in production).
+The panels are how an analyst (and later the data team) sees **exactly how each number was made**. On for prototypes, off for production (company standards `house_rules.how_built_panels` / `production_panels`; default: on while building, off in production).
 
 ## What every panel shows (collapsed by default)
 - The exact SQL that ran, with parameter values.
@@ -17,4 +17,4 @@ Streamlit uses `st.expander`; HTML reports use `<details>`.
 
 ## Production version (bi-kit-handoff)
 - Copy the app and set `DEBUG = False`. Queries and charts are unchanged; only the panels disappear.
-- `bi-kit-check` flags any **shared** app (granted to viewer roles) with `DEBUG = True`: panels expose SQL and object names to viewers.
+- Turn panels off before sharing an app widely: they show SQL and object names to every viewer.

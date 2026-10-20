@@ -8,7 +8,7 @@ description: "Check a snow-bi-kit dashboard, report or app before sharing it: sp
 Read-only. Never changes files or Snowflake objects; offers fixes instead. Load the `bi-kit-library` skill first and follow its `voice.md`.
 
 ## Inputs
-- The project folder (brief, app or report). If unclear which project, ask once.
+- The project folder (brief, app or report). If unclear which project, ask once (**text**: "Which project folder?").
 - Company standards, found with `standards-lookup.md` (bi-kit-library) (prototype location, roles, brand, debug policy). If none, check against the brief and say so once.
 
 ## Run three checks independently

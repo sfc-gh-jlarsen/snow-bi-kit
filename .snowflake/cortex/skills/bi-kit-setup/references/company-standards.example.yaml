@@ -1,33 +1,8 @@
-# Example only: a fictional company, used by tests and the gallery app.
+# Example only: a fictional company, handy for demos. Same shape as company-standards.template.yaml.
 company:
   name: "Acme Tire Co"
   standards_owner: "Analytics Platform team"
   last_reviewed: "2026-10-13"
-
-environments:
-  prototype:
-    database: "BI_KIT_DEMO"
-    schema_pattern: "PROTO_{username}"
-  dev:  { database: "ACME_DEV",  schema: "BI_APPS" }
-  test: { database: "ACME_TEST", schema: "BI_APPS" }
-  prod: { database: "ACME_PROD", schema: "BI_APPS" }
-  naming:
-    objects: "UPPER_SNAKE_CASE"
-    app_prefix: "BI_"
-
-access:
-  build_role: "BI_ANALYST"
-  viewer_roles: ["BI_VIEWER_NA", "BI_VIEWER_EU", "BI_VIEWER_APAC"]
-  shared_app_role: "BI_APP_OWNER"
-  external_sharing_allowed: false
-  cowork_publish_role: "BI_PUBLISHER"
-  row_level_security_note: "Region filtering is enforced by a row access policy on the sales fact."
-
-compute:
-  warehouse: "BI_XS_WH"
-  profiling_warehouse: "BI_XS_WH"
-  streamlit_compute_pool: "BI_STREAMLIT_POOL"
-  external_access_integration: "PYPI_ACCESS"
 
 brand:
   primary_color: "#1F4E79"
@@ -36,6 +11,8 @@ brand:
   negative_color: "#C62828"
   font_family: "Inter, Helvetica, Arial, sans-serif"
   logo_stage_path: ""
+
+formats:
   number_format: "{:,.0f}"
   currency: "USD"
   currency_format: "${:,.0f}"
@@ -54,20 +31,19 @@ trusted_data:
   metric_definitions:
     - name: "Net sales"
       definition: "Gross sales minus returns and allowances, USD, excludes intercompany"
-      source: "synthetic: NET_SALES_USD"
+      source: "NET_SALES_USD"
     - name: "Return rate"
       definition: "Returned units / shipped units, per month"
-      source: "synthetic: RETURN_RATE"
+      source: "RETURN_RATE"
 
-visual_overrides:
-  kpi: "Show change vs last year unless the brief names a plan."
+house_rules:
+  how_built_panels: "on"
+  production_panels: "remove"
+  visual_overrides:
+    kpi: "Show change vs last year unless the brief names a plan."
+  notes: ""
 
 handoff:
   receiving_team: "Data Engineering"
   intake: "Jira project DATAENG, component 'BI prototypes'"
   required_fields: ["Business owner", "Refresh need", "Expected viewers"]
-  doc_standards: "README must name the business owner and the refresh need."
-
-debug:
-  prototype: "on"
-  production: "remove"

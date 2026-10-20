@@ -5,7 +5,7 @@ Write exactly this structure, filled in. Keep it to one page. Mark anything infe
 ```markdown
 # <Project name>
 
-**Status:** Draft, waiting for "looks right" · **Owner:** <analyst> · **Hand-off to:** <standards.handoff.receiving_team> · **Target date:** <date or "none">
+**Status:** Draft, waiting for "looks right" · **Owner:** <analyst> · **Hand-off to:** <from standards `handoff.receiving_team`, or "not decided"> · **Target date:** <date or "none">
 **Starting point:** <new | existing app at `<path or FQN>`>
 
 ## Outcome
@@ -57,7 +57,7 @@ Other options: <one line each on why not>.
 |---|---|---|---|
 | 1 | kpi ×4 | Net sales, Units, Return rate, Avg price from SALES_DAILY | add |
 | 2 | line | Net sales by month, by region | add |
-- Filters: <region, date range> · Surface: <Streamlit app> · Location: <prototype database.schema from standards, or ask>
+- Filters: <region, date range> · Surface: <Streamlit app> · Deploy: decided at build time with the Streamlit/Apps skill
 - For an existing app: only list changes (add / change / remove); say "everything else stays as is".
 ```
 
@@ -65,7 +65,7 @@ Other options: <one line each on why not>.
 | Pick | When |
 |---|---|
 | **HTML report** | Fixed layout, read-mostly, shared in CoWork, no filters or only a few pre-set views; quickest to make and share. Static snapshot: refreshed when rebuilt. |
-| **Streamlit app** | Filters, drill-down, interactivity, live data; the default for "dashboard". Viewers need a Snowflake login (or external embedding, if standards allow it). |
+| **Streamlit app** | Filters, drill-down, interactivity, live data; the default for "dashboard". Viewers need a Snowflake login (or external embedding). |
 | **Agent** | Many different questions nobody can predict; users ask in plain English. Needs a semantic view over the data. Recommend alongside a dashboard, not instead of the agreed KPIs. |
 
 Flag when access needs change the pick: viewers without logins means Streamlit external embedding (runs as a service account, so everyone sees the same rows) or an HTML report. Say this plainly if "different rows for different people" is also yes.
